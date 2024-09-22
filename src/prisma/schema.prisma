@@ -1,13 +1,13 @@
 generator client {
   provider        = "prisma-client-js"
-  // previewFeatures = ["postgresqlExtensions"]
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
   provider   = "postgresql"
   url        = env("DATABASE_URL")
   directUrl  = env("DIRECT_URL")
-  // extensions = [uuid_ossp(map: "uuid-ossp", schema: "extensions")]
+  extensions = [uuid_ossp(map: "uuid-ossp", schema: "extensions")]
 }
 
 model Client {
@@ -108,7 +108,6 @@ model Guest {
   GuestDetail      GuestDetail[]
   Invitations      Invitations[]
   SendBlastingLogs SendBlastingLogs[]
-  Webhook          Webhook[]
 }
 
 model GuestDetail {
@@ -255,7 +254,6 @@ model QrBroadcastLogs {
 
 model Webhook {
   id               Int       @id @default(autoincrement())
-  guestId          Int
   templateName     String?
   waId             String?
   recipientId      String?
@@ -265,6 +263,6 @@ model Webhook {
   updatedAt        DateTime  @updatedAt
   clientId         Int
   statusCode       String?
+  blastingSource   String?
   Client           Client    @relation(fields: [clientId], references: [id])
-  Guest            Guest     @relation(fields: [guestId], references: [id])
 }
