@@ -2,7 +2,7 @@
 const morgan = require('morgan')
 const express = require('express')
 const webhookRouter = require('./routes/webhook/webhook.router')
-const {PrismaClient} = require('@prisma/client')
+const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 // const dashboardRouter = require('./routes/dashboard/dashboard.router')
 const app = express()
